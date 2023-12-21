@@ -1,0 +1,13 @@
+const express = require("express");
+const {postPost} = require("../controller/postController");
+const { getAllPost } = require("../controller/postController");
+const { deletePost } = require("../controller/postController");
+
+const router = express.Router();
+
+router.post("/add-post", postPost)
+router.get("/", getAllPost);
+router.delete("/delete/:postId", deletePost )
+
+
+module.exports = router;

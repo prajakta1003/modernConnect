@@ -1,0 +1,12 @@
+const express = require("express");
+const { addCollaborator } = require("../controller/collaborateController");
+const { getAllCollaborator } = require("../controller/collaborateController");
+
+
+const router = express.Router();
+
+router.post("/add-collaborate", addCollaborator)
+router.get("/", getAllCollaborator);
+
+
+module.exports = router;

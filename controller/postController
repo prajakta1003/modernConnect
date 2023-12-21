@@ -1,0 +1,39 @@
+const Post = require("../models/postModel");
+
+const postPost = async(req,res) => {
+    const { img, description, userId, like}= req.body;
+    try{
+        const post = await Post.create({img, description, userId, like})
+        res.status(200).json({post});
+    }catch(error){
+        res.status(400).json({error:error})
+    }
+}
+
+const getAllPost = async(req,res) => {
+    try{
+        const post = await Post.find();
+        if (!post) {
+            res.status(400).json({ error: "Not Found" });
+          }
+          res.status(200).json({ post });
+        } catch (error) {
+          res.status(400).json({ error: error });
+        }
+      };
+
+
+const deletePost= async(req,res) => {
+    const {postId} = req.params;
+    try{
+            const post= await Post.findByIdAndDelete({_id:postId})
+            if(!post){
+                return res.status(400).json({ error: "post not found"})
+            }res.status(200).json({post})
+        }catch(error){
+            res.status(400).json({error:error})
+        }
+        
+    }
+
+module.exports= { postPost,getAllPost,deletePost }

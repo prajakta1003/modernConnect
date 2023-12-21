@@ -1,0 +1,13 @@
+const express = require("express");
+const {addProject}= require("../controller/projectController");
+const { deleteProject } = require("../controller/projectController");
+const { updateProject } = require("../controller/projectController");
+
+const router = express.Router();
+
+router.post("/add-projects", addProject)
+router.delete("/delete/:projectId", deleteProject)
+router.post("/update/:projectId", updateProject)
+
+
+module.exports = router;

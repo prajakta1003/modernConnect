@@ -1,0 +1,28 @@
+const Collaborate = require("../models/collaborateModel");
+
+const addCollaborator = async(req,res) => {
+    const { userId,projectName, requirement, description}= req.body;
+    try{
+        const collaborate = await Collaborate.create({userId,projectName, requirement, description})
+        res.status(200).json({collaborate});
+    }catch(error){
+        res.status(400).json({error:error})
+    }
+}
+
+const getAllCollaborator = async(req,res) => {
+    try{
+        const collaborate = await Collaborate.find();
+        if (!collaborate) {
+            res.status(400).json({ error: "Not Found" });
+          }
+          res.status(200).json({ collaborate });
+        } catch (error) {
+          res.status(400).json({ error: error });
+        }
+      };
+
+
+
+
+module.exports= { addCollaborator,getAllCollaborator }
